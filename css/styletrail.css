@@ -21,17 +21,27 @@ html:after {
   top: 0; left: 0;
   height: 100%; width: 100%;
   background: transparent url(/img/tile.png) 0px 0px repeat;
-  animation: animatedBackground 40s linear infinite;
-}
-
-@keyframes animatedBackground {
-  from { background-position: 0 0; }
-  to { background-position: 100% 0; }
+  -webkit-animation: animatedBackground 60s linear infinite;
+  -moz-animation: animatedBackground 60s linear infinite;
+  -o-animation: animatedBackground 60s linear infinite;
+  animation: animatedBackground 60s linear infinite;
 }
 
 @-webkit-keyframes animatedBackground {
   from { background-position: 0 0; }
-  to { background-position: 100% 0; }
+  to { background-position: 0 100%; }
+}
+@-moz-keyframes animatedBackground {
+  from { background-position: 0 0; }
+  to { background-position: 0 100%; }
+}
+@-o-keyframes animatedBackground {
+  from { background-position: 0 0; }
+  to { background-position: 0 100%; }
+}
+@keyframes animatedBackground {
+  from { background-position: 0 0; }
+  to { background-position: 0 100%; }
 }
 
 body {
