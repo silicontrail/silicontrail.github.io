@@ -48,7 +48,7 @@ function codetrail() {
     , data: {
           image: '/img/' + SCENES[stats.scene].img
         , text: SCENES[stats.scene].text
-        , opts: SCENES[stats.scene].btns
+        , btns: SCENES[stats.scene].btns
       }
   })
 
