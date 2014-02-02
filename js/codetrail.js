@@ -12,15 +12,35 @@
   script.parentNode.insertBefore(resource, script)
 })();
 
+var stats = {
+  screen: 0
+}
+
+var SCREENS = [
+    {
+        text: 'Welcome to Silicon Trail.'
+      , opts: [
+          { name: 'Begin game', link: '0',
+            func: function(){ stats.screen = 1 }}
+        ]
+    }
+  , {
+        text: ''
+      , opts: [
+          {}
+        ]
+    }
+]
+
 function game() {
   trail = new Ractive({
       el: '#container'
     , template: '<img src="{{image}}"/><p>{{text}}<br/><br/>'
-        + '<a on-click="next" href="#">{{cont}}</a></p>'
+        + '{{#opts}}<a on-click="next" href="#{{link}}">{{name}}</a>{{/opts}}</p>'
     , data: {
-          image: 'img/foobar.jpg'
-        , text: 'hello, world'
-        , cont: 'next'
+          image: '/img/' + stats.screen + '.jpg'
+        , text: SCREENS[stats.screen].text
+        , opts: SCREENS[stats.screen].opts
       }
   })
   trail.on({
@@ -28,11 +48,11 @@ function game() {
   })
 }
 
-game.stats = {
-
-}
-
-
 function trNext(event) {
-
+  var select = window.location.hash.slice(1)
+  console.log(select)
+  SCREENS[stats.screen].opts[select].func()
+  trail.set('image', '/img/' + stats.screen + '.jpg')
+  trail.set('text', SCREENS[stats.screen].text)
+  trail.set('opts', SCREENS[stats.screen].opts)
 }
