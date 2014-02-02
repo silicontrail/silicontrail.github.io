@@ -1,3 +1,4 @@
+// async Ractive.js, fire event once finished
 (function(){
   var resource = document.createElement('script')
   resource.type = 'text/javascript'
@@ -6,53 +7,73 @@
   resource.onload = resource.onreadystatechange = function() {
     if (this.readyState && this.readyState != 'complete'
         && this.readyState != 'loaded') { return }
-    try { game() } catch (event) { console.error(event) }
+    try { codetrail() } catch (event) { console.error(event) }
   }
   var script = document.getElementsByTagName('script')[0]
   script.parentNode.insertBefore(resource, script)
 })();
 
+// Model
 var stats = {
-  screen: 0
+  scene: 0
 }
 
-var SCREENS = [
+// Controller for each scene, should be static.
+var SCENES = [
     {
-        text: 'Welcome to Silicon Trail.'
-      , opts: [
-          { name: 'Begin game', link: '0',
-            func: function(){ stats.screen = 1 }}
+        img: 'opening.jpg'
+      , text: 'Welcome to the Silicon Trail.'
+      , btns: [
+          {
+              name: 'Begin game'
+            , next: 1
+            , func: function(){ }
+          }
         ]
     }
   , {
         text: ''
-      , opts: [
+      , btns: [
           {}
         ]
     }
 ]
 
-function game() {
+//constructor, executed once ractive is loaded.
+function codetrail() {
   trail = new Ractive({
       el: '#container'
     , template: '<img src="{{image}}"/><p>{{text}}<br/><br/>'
-        + '{{#opts}}<a on-click="next" href="#{{link}}">{{name}}</a>{{/opts}}</p>'
+        + '{{#btns}}<a on-click="next">{{name}}</a>{{/btns}}</p>'
     , data: {
-          image: '/img/' + stats.screen + '.jpg'
-        , text: SCREENS[stats.screen].text
-        , opts: SCREENS[stats.screen].opts
+          image: '/img/' + SCENES[stats.scene].img
+        , text: SCENES[stats.scene].text
+        , opts: SCENES[stats.scene].btns
       }
   })
+
+  // this currently only affects buttons
   trail.on({
-    next: trNext
+    next: trailblaze
   })
 }
 
-function trNext(event) {
-  var select = window.location.hash.slice(1)
-  console.log(select)
-  SCREENS[stats.screen].opts[select].func()
-  trail.set('image', '/img/' + stats.screen + '.jpg')
-  trail.set('text', SCREENS[stats.screen].text)
-  trail.set('opts', SCREENS[stats.screen].opts)
+// fired upon button action (possibly other controllers)
+function trailblaze(event) {
+
+  // run the SCENES[x].btns[y].func functionality
+  // associated with the controller
+  event.context.func()
+
+  // controller changes scenes
+  if (event.context.next !== undefined) {
+
+    // change the model
+    stats.scene = event.context.next
+
+    // change the view
+    trail.set('image', '/img/' + SCENES[stats.scene].img)
+    trail.set('text', SCENES[stats.scene].text)
+    trail.set('opts', SCENES[stats.scene].btns)
+  }
 }
