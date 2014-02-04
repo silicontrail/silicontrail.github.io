@@ -1,0 +1,84 @@
+/*snippets from normalize.css v3.0.0 | MIT License | git.io/normalize */
+
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html { 
+  color: white;
+  background: #1f33ed;
+  font-family: "Lucida Console", Monaco, "Courier New", courier, monospace;
+  font-size: 1.2em;
+  -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; 
+}
+
+html:after {
+  content: " ";
+  pointer-events: none;
+  position: fixed;
+  top: 0; left: 0;
+  height: 100%; width: 100%;
+  background: transparent url(/img/tile.png) 0px 0px repeat;
+  -webkit-animation: animatedBackground 60s linear infinite;
+  -moz-animation: animatedBackground 60s linear infinite;
+  -o-animation: animatedBackground 60s linear infinite;
+  animation: animatedBackground 60s linear infinite;
+}
+
+@-webkit-keyframes animatedBackground {
+  from { background-position: 0 0; }
+  to { background-position: 0 100%; }
+}
+@-moz-keyframes animatedBackground {
+  from { background-position: 0 0; }
+  to { background-position: 0 100%; }
+}
+@-o-keyframes animatedBackground {
+  from { background-position: 0 0; }
+  to { background-position: 0 100%; }
+}
+@keyframes animatedBackground {
+  from { background-position: 0 0; }
+  to { background-position: 0 100%; }
+}
+
+body {
+  width: 100%;
+  max-width: 600px;
+  margin: 50px auto;
+}
+
+p {
+  padding: 30px 10px;
+  color: white;
+  background: #222222;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  padding: 4px;
+  color: #1f33ed;
+  background: white;
+}
+
+a:active, a:hover {
+  outline: 0;
+  opacity: .8;
+  color: black;
+}
+
+small {
+  display: block;
+  margin: 10px;
+  font-size: 80%;
+}
+
+img {
+  width: 100%;
+  background: #222222;
+  outline: 0;
+  border: 0;
+}

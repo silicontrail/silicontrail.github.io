@@ -1,0 +1,22 @@
+{
+    "name": "SiliconTrail"
+  , "description": "An Oregon Trail clone, remodeled to ford the Silicon Valley "
+  , "homepage": "http://silicontrail.github.io/"
+  , "version": "0.1.0"
+  , "license": "MIT"
+  , "devDependencies": {
+        "gulp": "^3.5.1"
+      , "gulp-concat": "^2.1.7"
+      , "gulp-livereload": "^0.3.1"
+      , "gulp-uglify": "^0.2.0"
+      , "gulp-watch": "^0.5.0"
+      , "tiny-lr": "^0.0.5"
+    }
+  , "repository": {
+        "type": "git"
+      , "url": "https://github.com/silicontrail/silicontrail.github.io.git"
+    }
+  , "bugs": {
+        "url": "https://github.com/silicontrail/silicontrail.github.io/issues"
+    }
+}
